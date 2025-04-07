@@ -23,6 +23,15 @@ const testimonials = [
   }
 ];
 
+const companyLogos = [
+  { name: "SAP", logo: "https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" },
+  { name: "Tally", logo: "https://tallysolutions.com/wp-content/uploads/2022/01/tallyprime-logo.svg" },
+  { name: "Busy", logo: "https://busywin.com/wp-content/uploads/2022/04/logo.svg" },
+  { name: "AlignBooks", logo: "https://alignbooks.com/assets/img/alignbooks-logo.png" },
+  { name: "ERPNext", logo: "https://erpnext.com/files/erpnext-logo.png" },
+  { name: "Microsoft Dynamics", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Microsoft_Dynamics_365_logo.svg" },
+];
+
 const TestimonialSection = () => {
   return (
     <div className="section-padding bg-white">
@@ -38,7 +47,7 @@ const TestimonialSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="border-slate-200">
+            <Card key={index} className="border-slate-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <CardContent className="p-6 space-y-4">
                 <div className="flex items-center mb-2">
                   {[1, 2, 3, 4, 5].map((star) => (
@@ -66,12 +75,19 @@ const TestimonialSection = () => {
           ))}
         </div>
         
-        <div className="mt-16 flex flex-wrap justify-center gap-12 opacity-70">
-          {["Company A", "Company B", "Company C", "Company D", "Company E", "Company F"].map((company, i) => (
-            <div key={i} className="text-slate-400 font-semibold text-xl">
-              {company}
-            </div>
-          ))}
+        <div className="mt-16">
+          <h3 className="text-2xl font-semibold text-center mb-10">Seamlessly Integrates With Your ERP System</h3>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {companyLogos.map((company, i) => (
+              <div key={i} className="group">
+                <img 
+                  src={company.logo} 
+                  alt={`${company.name} logo`} 
+                  className="h-12 md:h-16 object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
