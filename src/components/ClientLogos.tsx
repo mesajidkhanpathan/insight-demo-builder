@@ -1,5 +1,6 @@
 
 import React from "react";
+import { Check } from "lucide-react";
 
 const clientData = [
   {
@@ -34,16 +35,24 @@ const clientData = [
   }
 ];
 
+const erpLogos = [
+  { name: "Tally", highlight: true },
+  { name: "Busy", highlight: true },
+  { name: "SAP Business One", highlight: true },
+  { name: "Align Books", highlight: false },
+  { name: "ERPNext", highlight: false }
+];
+
 const ClientLogos = () => {
   return (
-    <div className="py-12 bg-white">
+    <div className="py-12 bg-white border-b border-slate-100">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Trusted by Leading Businesses</h2>
           <p className="text-gray-600">Join hundreds of companies making better decisions with InsightERP</p>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-12">
           {clientData.map((client, index) => (
             <div 
               key={index} 
@@ -60,6 +69,27 @@ const ClientLogos = () => {
               <p className="text-xs text-slate-500">{client.industry}</p>
             </div>
           ))}
+        </div>
+        
+        <div className="mt-8 pt-8 border-t border-slate-100">
+          <div className="text-center mb-6">
+            <h3 className="text-xl font-semibold text-gray-800">Works with All Major ERP Systems</h3>
+            <p className="text-gray-600 text-sm">Seamlessly integrates with your existing infrastructure</p>
+          </div>
+          
+          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8">
+            {erpLogos.map((erp, index) => (
+              <div 
+                key={index} 
+                className={`py-2 px-4 border ${erp.highlight ? 'border-accent/30 bg-accent/5' : 'border-slate-200'} rounded-full flex items-center gap-2 group hover:border-accent/50 hover:scale-105 transition-all duration-300`}
+              >
+                {erp.highlight && <Check className="h-4 w-4 text-accent" />}
+                <span className={`text-sm font-medium ${erp.highlight ? 'text-accent' : 'text-slate-700'}`}>
+                  {erp.name}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

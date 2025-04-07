@@ -22,9 +22,25 @@ const Index = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
                 Ready to Transform Your Business Decisions?
               </h2>
-              <p className="text-slate-600 text-center mb-12 max-w-2xl mx-auto">
+              <p className="text-slate-600 text-center mb-8 max-w-2xl mx-auto">
                 Book a personalized demo with our experts and discover how InsightERP can help your business unlock the full potential of your ERP data.
               </p>
+              
+              <div className="mb-12 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="aspect-video">
+                  <iframe 
+                    width="100%" 
+                    height="100%" 
+                    src="https://www.youtube.com/embed/DuuO7glrz1E" 
+                    title="InsightERP Demo Video" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen
+                    className="w-full h-full"
+                  ></iframe>
+                </div>
+              </div>
+              
               <DemoForm />
             </div>
           </div>
