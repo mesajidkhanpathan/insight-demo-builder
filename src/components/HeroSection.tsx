@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, PlayCircle } from "lucide-react";
+import { ArrowRight, PlayCircle, BarChart3, TrendingUp, Clock, Users } from "lucide-react";
 
 const dataPoints = [
   "inventory levels",
@@ -12,16 +12,55 @@ const dataPoints = [
   "customer insights"
 ];
 
+const statsData = [
+  {
+    icon: <TrendingUp className="h-8 w-8 text-accent" />,
+    value: "+45%",
+    label: "Decision-making speed",
+    description: "Faster insights lead to quicker actions"
+  },
+  {
+    icon: <BarChart3 className="h-8 w-8 text-accent" />,
+    value: "3.5x",
+    label: "ROI for our customers",
+    description: "Average return on investment"
+  },
+  {
+    icon: <Clock className="h-8 w-8 text-accent" />,
+    value: "92%",
+    label: "User satisfaction rate",
+    description: "Based on customer feedback"
+  },
+  {
+    icon: <Users className="h-8 w-8 text-accent" />,
+    value: "10k+",
+    label: "Active users",
+    description: "Across 500+ companies"
+  }
+];
+
 const HeroSection = () => {
   const [currentDataPoint, setCurrentDataPoint] = useState(0);
   const [showDialog, setShowDialog] = useState(false);
+  const [visibleStats, setVisibleStats] = useState(1);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentDataPoint((prev) => (prev + 1) % dataPoints.length);
     }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+    
+    // Increment visible stats count gradually
+    const statsTimer = setTimeout(() => {
+      if (visibleStats < statsData.length) {
+        setVisibleStats(prev => prev + 1);
+      }
+    }, 600);
+    
+    return () => {
+      clearInterval(interval);
+      clearTimeout(statsTimer);
+    };
+  }, [visibleStats]);
 
   const scrollToDemo = () => {
     const demoSection = document.getElementById("demo-section");
@@ -41,6 +80,9 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 pt-24 pb-32 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           <div className="lg:w-1/2 text-center lg:text-left">
+            <div className="inline-block bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-6 animate-fade-in">
+              #1 Rated ERP Analytics Platform | Used by 500+ Companies
+            </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 animate-fade-in">
               Transform Your ERP Data Into 
               <div className="h-16 md:h-20">
@@ -71,6 +113,24 @@ const HeroSection = () => {
                 Watch Overview
               </Button>
             </div>
+            
+            {/* Key numbers highlighted in small cards */}
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {statsData.slice(0, visibleStats).map((stat, index) => (
+                <div 
+                  key={index}
+                  className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-4 flex items-start gap-4 hover:border-accent/30 transition-all duration-300 hover:-translate-y-1 animate-fade-in"
+                  style={{ animationDelay: `${index * 200}ms` }}
+                >
+                  <div className="mt-1">{stat.icon}</div>
+                  <div>
+                    <div className="text-2xl font-bold text-white">{stat.value}</div>
+                    <div className="text-sm font-medium text-slate-300">{stat.label}</div>
+                    <div className="text-xs text-slate-400 mt-1">{stat.description}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="lg:w-1/2">
             <div className="relative bg-slate-800 rounded-xl shadow-2xl border border-slate-700 p-2 max-w-lg mx-auto hover:shadow-accent/20 hover:shadow-2xl transition-all duration-500">
@@ -81,6 +141,33 @@ const HeroSection = () => {
                   className="w-full rounded-lg shadow-lg transform transition-transform hover:scale-105 duration-500"
                 />
               </div>
+              
+              {/* Floating UI elements to make it look like an actual dashboard */}
+              <div className="absolute top-10 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-lg border border-slate-200 transform rotate-3 hover:rotate-0 transition-all duration-300">
+                <div className="w-32 h-20">
+                  <div className="h-2 w-20 bg-accent/70 rounded-full mb-2"></div>
+                  <div className="h-2 w-16 bg-slate-300 rounded-full mb-2"></div>
+                  <div className="h-2 w-24 bg-slate-300 rounded-full mb-2"></div>
+                  <div className="h-8 w-full bg-slate-100 rounded-md"></div>
+                </div>
+              </div>
+              
+              <div className="absolute -bottom-8 -left-8 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-lg border border-slate-200 transform -rotate-6 hover:rotate-0 transition-all duration-300">
+                <div className="w-40 h-24">
+                  <div className="flex items-center mb-2">
+                    <div className="h-3 w-3 rounded-full bg-accent mr-2"></div>
+                    <div className="h-2 w-20 bg-slate-300 rounded-full"></div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-1">
+                    <div className="h-3 w-full bg-slate-200 rounded-full"></div>
+                    <div className="h-3 w-full bg-slate-200 rounded-full"></div>
+                    <div className="h-3 w-full bg-slate-200 rounded-full"></div>
+                    <div className="h-3 w-full bg-slate-200 rounded-full"></div>
+                  </div>
+                  <div className="mt-2 h-10 w-full bg-gradient-to-r from-accent/50 to-purple-500/50 rounded-md"></div>
+                </div>
+              </div>
+              
               <div className="absolute -bottom-4 -right-4 bg-accent rounded-full p-3 shadow-lg animate-pulse">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M21 21H4.6C3.1 21 2 19.9 2 18.4V3" stroke="white" strokeWidth="2" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
@@ -96,19 +183,13 @@ const HeroSection = () => {
       {/* Stats bar */}
       <div className="bg-slate-900/80 backdrop-blur-sm border-t border-slate-800">
         <div className="container mx-auto px-4 py-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center group hover:-translate-y-1 transition-transform duration-300">
-              <p className="text-3xl md:text-4xl font-bold text-white mb-1 group-hover:text-accent transition-colors">+45%</p>
-              <p className="text-slate-400">Decision-making speed</p>
-            </div>
-            <div className="text-center group hover:-translate-y-1 transition-transform duration-300">
-              <p className="text-3xl md:text-4xl font-bold text-white mb-1 group-hover:text-accent transition-colors">3.5x</p>
-              <p className="text-slate-400">ROI for our customers</p>
-            </div>
-            <div className="text-center group hover:-translate-y-1 transition-transform duration-300">
-              <p className="text-3xl md:text-4xl font-bold text-white mb-1 group-hover:text-accent transition-colors">92%</p>
-              <p className="text-slate-400">User satisfaction rate</p>
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {statsData.map((stat, index) => (
+              <div key={index} className="text-center group hover:-translate-y-1 transition-transform duration-300">
+                <p className="text-3xl md:text-4xl font-bold text-white mb-1 group-hover:text-accent transition-colors">{stat.value}</p>
+                <p className="text-slate-400">{stat.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

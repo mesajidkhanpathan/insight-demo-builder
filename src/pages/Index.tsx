@@ -6,12 +6,14 @@ import DashboardBenefits from "@/components/DashboardBenefits";
 import DemoForm from "@/components/DemoForm";
 import TestimonialSection from "@/components/TestimonialSection";
 import Footer from "@/components/Footer";
+import ClientLogos from "@/components/ClientLogos";
 
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <main>
         <HeroSection />
+        <ClientLogos />
         <FeatureSection />
         <DashboardBenefits />
         <div id="demo-section" className="bg-slate-50 section-padding">
