@@ -70,7 +70,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="relative bg-gradient-to-br from-slate-900 to-slate-800 overflow-hidden">
+    <div className="relative bg-white overflow-hidden">
       {/* Abstract data visualization graphics */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-purple-400 rounded-full filter blur-3xl animate-pulse"></div>
@@ -83,7 +83,7 @@ const HeroSection = () => {
             <div className="inline-block bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-6 animate-fade-in">
               #1 Rated ERP Analytics Platform | Used by 500+ Companies
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 animate-fade-in">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6 animate-fade-in">
               Transform Your ERP Data Into 
               <div className="h-16 md:h-20">
                 <span className="gradient-text block mt-2 transition-all duration-500">
@@ -91,7 +91,7 @@ const HeroSection = () => {
                 </span>
               </div>
             </h1>
-            <p className="text-xl text-slate-300 mb-8 max-w-xl mx-auto lg:mx-0">
+            <p className="text-xl text-slate-600 mb-8 max-w-xl mx-auto lg:mx-0">
               InsightERP connects directly to Tally, SAP, Busy, and other ERPs to deliver powerful visualizations that make complex data simple to understand and act on.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -106,7 +106,7 @@ const HeroSection = () => {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="border-slate-300 text-slate-200 hover:bg-slate-700 group"
+                className="border-slate-300 text-slate-700 hover:bg-slate-100 group"
                 onClick={() => setShowDialog(true)}
               >
                 <PlayCircle className="mr-2 h-5 w-5 group-hover:text-accent transition-colors" />
@@ -119,21 +119,21 @@ const HeroSection = () => {
               {statsData.slice(0, visibleStats).map((stat, index) => (
                 <div 
                   key={index}
-                  className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-4 flex items-start gap-4 hover:border-accent/30 transition-all duration-300 hover:-translate-y-1 animate-fade-in"
+                  className="bg-slate-50 border border-slate-200 rounded-xl p-4 flex items-start gap-4 hover:border-accent/30 hover:shadow-md transition-all duration-300 hover:-translate-y-1 animate-fade-in"
                   style={{ animationDelay: `${index * 200}ms` }}
                 >
                   <div className="mt-1">{stat.icon}</div>
                   <div>
-                    <div className="text-2xl font-bold text-white">{stat.value}</div>
-                    <div className="text-sm font-medium text-slate-300">{stat.label}</div>
-                    <div className="text-xs text-slate-400 mt-1">{stat.description}</div>
+                    <div className="text-2xl font-bold text-slate-900">{stat.value}</div>
+                    <div className="text-sm font-medium text-slate-700">{stat.label}</div>
+                    <div className="text-xs text-slate-500 mt-1">{stat.description}</div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
           <div className="lg:w-1/2">
-            <div className="relative bg-slate-800 rounded-xl shadow-2xl border border-slate-700 p-2 max-w-lg mx-auto hover:shadow-accent/20 hover:shadow-2xl transition-all duration-500">
+            <div className="relative bg-white rounded-xl shadow-xl border border-slate-200 p-2 max-w-lg mx-auto hover:shadow-accent/20 hover:shadow-2xl transition-all duration-500">
               <div className="bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-lg overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800" 
@@ -181,13 +181,13 @@ const HeroSection = () => {
       </div>
       
       {/* Stats bar */}
-      <div className="bg-slate-900/80 backdrop-blur-sm border-t border-slate-800">
+      <div className="bg-slate-50 border-t border-slate-100">
         <div className="container mx-auto px-4 py-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {statsData.map((stat, index) => (
               <div key={index} className="text-center group hover:-translate-y-1 transition-transform duration-300">
-                <p className="text-3xl md:text-4xl font-bold text-white mb-1 group-hover:text-accent transition-colors">{stat.value}</p>
-                <p className="text-slate-400">{stat.label}</p>
+                <p className="text-3xl md:text-4xl font-bold text-slate-900 mb-1 group-hover:text-accent transition-colors">{stat.value}</p>
+                <p className="text-slate-600">{stat.label}</p>
               </div>
             ))}
           </div>
