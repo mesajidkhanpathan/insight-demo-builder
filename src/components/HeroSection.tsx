@@ -3,15 +3,6 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, PlayCircle, BarChart3, TrendingUp, Clock, Users } from "lucide-react";
 
-const dataPoints = [
-  "inventory levels",
-  "financial metrics",
-  "sales performance",
-  "production efficiency",
-  "supply chain data",
-  "customer insights"
-];
-
 const statsData = [
   {
     icon: <TrendingUp className="h-8 w-8 text-accent" />,
@@ -40,15 +31,10 @@ const statsData = [
 ];
 
 const HeroSection = () => {
-  const [currentDataPoint, setCurrentDataPoint] = useState(0);
   const [showDialog, setShowDialog] = useState(false);
   const [visibleStats, setVisibleStats] = useState(1);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentDataPoint((prev) => (prev + 1) % dataPoints.length);
-    }, 3000);
-    
     // Increment visible stats count gradually
     const statsTimer = setTimeout(() => {
       if (visibleStats < statsData.length) {
@@ -57,7 +43,6 @@ const HeroSection = () => {
     }, 600);
     
     return () => {
-      clearInterval(interval);
       clearTimeout(statsTimer);
     };
   }, [visibleStats]);
@@ -85,11 +70,9 @@ const HeroSection = () => {
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6 animate-fade-in">
               Transform Your ERP Data Into 
-              <div className="h-16 md:h-20">
-                <span className="gradient-text block mt-2 transition-all duration-500">
-                  {dataPoints[currentDataPoint]} insights
-                </span>
-              </div>
+              <span className="gradient-text block mt-2">
+                valuable business insights
+              </span>
             </h1>
             <p className="text-xl text-slate-600 mb-8 max-w-xl mx-auto lg:mx-0">
               InsightERP connects directly to Tally, SAP, Busy, and other ERPs to deliver powerful visualizations that make complex data simple to understand and act on.
