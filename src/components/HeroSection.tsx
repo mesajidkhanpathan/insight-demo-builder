@@ -162,20 +162,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-      
-      {/* Stats bar */}
-      <div className="bg-slate-50 border-t border-slate-100">
-        <div className="container mx-auto px-4 py-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {statsData.map((stat, index) => (
-              <div key={index} className="text-center group hover:-translate-y-1 transition-transform duration-300">
-                <p className="text-3xl md:text-4xl font-bold text-slate-900 mb-1 group-hover:text-accent transition-colors">{stat.value}</p>
-                <p className="text-slate-600">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
 
       {/* Simple video modal - in a real app you'd use a proper Dialog from shadcn/ui */}
       {showDialog && (
